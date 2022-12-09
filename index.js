@@ -3,8 +3,7 @@ import * as store from "./store";
 import Navigo from "navigo";
 import { capitalize } from "lodash";
 import { doc } from "prettier";
-console.log(store);
-
+import axios from "axios";
 const router = new Navigo("/");
 
 function render(state = store.Home) {
