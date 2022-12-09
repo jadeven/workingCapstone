@@ -7,13 +7,13 @@
 }
 
 #jumbotron > h1 {
-  color: black;
+  color: pink;
   text-align: center;
 }
 
 #jumbotron > a {
   text-decoration: none;
-  background-color: white;
+  background-color: purple;
   font-size: 1.5em;
   padding: 1.5rem;
   border-radius: 10px;
