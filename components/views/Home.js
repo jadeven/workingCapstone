@@ -23,5 +23,10 @@ export default state => html`
           `<div id=${idx}>${el.desc} <button onclick="deleteTask()"> more info </button> </div>`
       )}
     </div>
+    <div>
+    The weather in ${state.weather.city} is ${state.weather.description}.
+      Temperature is ${state.weather.temp}F, and it feels like
+      ${state.weather.feelsLike}F.
+    </div>
   </section>
 `;
