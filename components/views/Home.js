@@ -5,10 +5,19 @@ import { Icon } from "leaflet";
 
 export default state => html`
   <section id="jumbotron">
-    <h1>Welcome to Ocean Checker fsdjlfsdlkjfls</h1>
-    <!-- <a href="index.html">"Call to Action" "Button"</a> -->
+  <header id="welcome">
+          <div id="title">
+            <h1>Welcome to Ocean Hazard Checker</h1>
+          </div>
+          <div>
+            <h3>
+              Please use links below to find real time conditions of beaches
+              located on military bases in Hawaii
+            </h5>
+          </div>
+        </header>    <!-- <a href="index.html">"Call to Action" "Button"</a> -->
 
-    <div class="hidden--mobile nav-links">
+    <div>
       ${state.baseInfo.map(
         (el, idx) =>
           `<div id=${idx}>${el.desc} <button onclick="deleteTask()"> more info </button> </div>`
