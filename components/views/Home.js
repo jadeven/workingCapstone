@@ -19,8 +19,13 @@ export default state => html`
   <div id="beach">
     ${state.baseInfo.map(
       (el, idx) =>
-        `<div id= 'beachCollections${idx}'><h3 id='beachDesc'>${el.desc}</h3> <div id='beachInfo'>${el.beachInfo}</div>
-       <div id='picDiv'> <img  src=${el.photo} id ='image'> </div>
+        `<div id= 'beachCollections'>
+        <h3 id='beachDesc'>${el.desc}</h3>
+        <div id='beachInfo'>${el.beachInfo}</div>
+       <div id='picDiv'>
+       <img  src=${el.photo} id ='image'>
+       <button id='link'> Leave a message</button>
+       </div>
         <hr></div>`
     )}
     <div id="weather">
