@@ -131,10 +131,11 @@
 }
 
 
-#picDiv{
-  margin: auto;
+/* #beachCollections{
+  display: flex;
+  justify-content: center
 
-}
+} */
 
 #beach{
   width: 70%;
@@ -155,14 +156,34 @@
 
 }
 
+#picDiv{
+  margin: auto;
+  text-align: center;
+  display: flex;
+  justify-content: space-around
+
+
+}
+
+#link {
+  height: 90px;
+  width: 90px;
+  font-size: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+
+
+}
 
 #image{
-  margin: auto;
+  /* margin: auto; */
   /* margin-top:40px; */
+  border-radius: 8px;
   border: 2px solid #555;
   height: 35%;
   width: 35%;
   text-align: center;
+
 
 
 }
