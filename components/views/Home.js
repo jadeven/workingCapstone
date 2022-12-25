@@ -1,6 +1,7 @@
 import html from "html-literal";
 
 export default state => html`
+  ${console.log("state", state)}
   <section id="jumbotron">
     <header id="welcome">
       <div id="title">
@@ -24,15 +25,14 @@ export default state => html`
         <div id='beachInfo'>${el.beachInfo}</div>
        <div id='picDiv'>
        <img  src=${el.photo} id ='image'>
-       <button id='link'> Leave a message</button>
+       <div>
+        Today the wind is coming from the ${state.weather[idx].deg}
+        and is blowing ${state.weather[idx].speed} mph.
+      </div>
        </div>
+
         <hr></div>`
     )}
-    <div id="weather">
-      The weather in ${state.weather.city} is ${state.weather.description}.
-      Temperature is ${state.weather.temp}F, and it feels like
-      ${state.weather.feelsLike}F.
-    </div>
   </div>
   <hr />
 `;

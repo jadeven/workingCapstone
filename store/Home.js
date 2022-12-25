@@ -7,7 +7,7 @@ import HickamRunway from "../assets/img/HickamRunway.png";
 export default {
   header: " Page",
   view: "Home",
-  weather: {},
+  weather: [],
   baseInfo: [
     {
       lat: 21.4639,
