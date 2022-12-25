@@ -1,10 +1,10 @@
 const { Router } = require("express");
-const Pizza = require("../models/Messages");
+const Message = require("../models/Messages");
 const router = Router();
 
 router.post("/", (request, response) => {
-  const newPizza = new Pizza(request.body);
-  newPizza.save((error, record) => {
+  const newMessage = new Message(request.body);
+  newMessage.save((error, record) => {
     if (error) return response.status(500).json(error);
     console.log(record);
     return response.json(record);
@@ -13,7 +13,7 @@ router.post("/", (request, response) => {
 
 // Get (read) all records from the collection
 router.get("/", (request, response) => {
-  Pizza.find({}, (error, record) => {
+  Message.find({}, (error, record) => {
     if (error) return response.status(500).json(error);
     return response.json(record);
   });
