@@ -27,37 +27,37 @@ function afterRender(state) {
   document.querySelector(".fa-bars").addEventListener("click", () => {
     document.querySelector("messageButton").classList.toggle("hidden--mobile");
   });
-  if (state.view === "Home") {
+  if (state.view === "Message") {
     document.querySelector("form").addEventListener("submit", event => {
       event.preventDefault();
 
-      const inputList = event.target.elements;
-      console.log("Input Element List", inputList);
+      // const inputList = event.target.value
 
-      const toppings = [];
-      // Interate over the toppings input group elements
-      for (let input of inputList.toppings) {
-        // If the value of the checked attribute is true then add the value to the toppings array
-        if (input.checked) {
-          toppings.push(input.value);
-        }
-      }
+      const message = document.getElementById('beachMessage');
+      const beachChoice = document.getElementById('beachChoice');
+
+      console.log('mesage', message.value)
+      console.log('beachChoice', beachChoice.value)
+
+
+      // console.log("Input Element List", inputList);
+
+      const messages = [];
+      
 
       const requestData = {
-        customer: inputList.customer.value,
-        crust: inputList.crust.value,
-        cheese: inputList.cheese.value,
-        sauce: inputList.sauce.value,
-        toppings: toppings
+        beach: beachChoice,
+        message: message,
+   
       };
       console.log("request Body", requestData);
 
       axios
-        .post(`${process.env.PIZZA_PLACE_API_URL}/pizzas`, requestData)
+        .post(`${process.env.MESSAGE_API_URL}/message`, requestData)
         .then(response => {
           // Push the new pizza onto the Pizza state pizzas attribute, so it can be displayed in the pizza list
           store.Pizza.pizzas.push(response.data);
-          router.navigate("/Pizza");
+          router.navigate("/");
         })
         .catch(error => {
           console.log("It puked", error);
@@ -80,9 +80,7 @@ router.hooks({
               const {
                 data: { wind }
               } = await axios.get(
-                `https://api.openweathermap.org/data/2.5/weather?lat=${
-                  item.lat
-                }&lon=${item.long}&appid=${"8da00a728b7efe71dbe76dbad12f816d"}`
+                `https://api.openweathermap.org/data/2.5/weather?lat=${item.lat}&lon=${item.long}&appid=${process.env.OPEN_WEATHER_MAP_API_KEY}`
               );
 
               return wind;
@@ -122,20 +120,20 @@ router.hooks({
           .catch(err => console.log(err));
         break;
       // New Case for Pizza View
-      case "Pizza":
-        // New Axios get request utilizing already made environment variable
-        axios
-          .get(`${process.env.PIZZA_PLACE_API_URL}/pizzas`)
-          .then(response => {
-            // Storing retrieved data in state
-            store.Pizza.pizzas = response.data;
-            done();
-          })
-          .catch(error => {
-            console.log("It puked", error);
-            done();
-          });
-        break;
+      // case "Pizza":
+      //   // New Axios get request utilizing already made environment variable
+      //   axios
+      //     .get(`${process.env.PIZZA_PLACE_API_URL}/pizzas`)
+      //     .then(response => {
+      //       // Storing retrieved data in state
+      //       store.Pizza.pizzas = response.data;
+      //       done();
+      //     })
+      //     .catch(error => {
+      //       console.log("It puked", error);
+      //       done();
+      //     });
+      //   break;
       default:
         done();
     }

@@ -10,12 +10,14 @@ export default state => html`
       <div>
         <h3>
           Please use links below to find real time conditions of beaches located
-          on military bases in Hawaii
+          on military bases in Hawaii or please leave a message about the beach. 
         </h3>
+        <div><a href="/message" title="message"
+       data-navigo>Leave a message</a></div>
+
       </div>
     </header>
   </section>
-  <!-- <a href="index.html">"Call to Action" "Button"</a> -->
 
   <div id="beach">
     ${state.baseInfo.map(
