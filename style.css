@@ -36,13 +36,9 @@
 
 }
 
-
-
 #bio {
   margin: 1rem;
 }
-
-
 
 @media (max-width: 549px){
   .hidden--mobile {

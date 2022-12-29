@@ -3,6 +3,7 @@ const Message = require("../models/Messages");
 const router = Router();
 
 router.post("/", (request, response) => {
+  console.log('hit backend post ')
   const newMessage = new Message(request.body);
   newMessage.save((error, record) => {
     if (error) return response.status(500).json(error);
