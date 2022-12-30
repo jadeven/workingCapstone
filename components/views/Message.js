@@ -27,5 +27,7 @@ export default () => html`
       </div>
       <input type="submit" name="submit" value="Submit Message" />
     </form>
+  </div id='allMessages'>
+    
   </div>
 `;
