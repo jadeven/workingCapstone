@@ -10,7 +10,9 @@ const messageSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: /^[A-Za-z0-9 ]*$/
-  }
+  },
+  time : { type : Date, default: Date.now }
+
 });
 
 const Messages = mongoose.model("Messages", messageSchema);
