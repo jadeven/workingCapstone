@@ -14,7 +14,7 @@ import html from "html-literal";
 export default state => html`
   </div id='allMessages'>
 
-  <div>
+  <span>
       <label for="filterBeach"> View message by beach:</label> 
       <select id="filterBeach" name="filterBeach">
       <option value="">Select a Beach</option>
@@ -24,32 +24,18 @@ export default state => html`
       <option value="barbers">Barbers Point</option>
       <option value="pokai">Pokai Bay</option>
       </select>
-</div>
+      <label for="filterDate">Date:</label> 
+      <select id="filterDate" name="filterBeach">
+      <option value="">Select a Date</option>
+      <option value="hours">Last 24 hours </option>
+      <option value="week">Last 7 days </option>
+      <option value="month">Last Month</option>
+      <option value="six">last six months</option>
+      <option value="year"> Last Year</option>
+      </select>
+</span>
 <div id='output'>
 </div>
    </div>
 `;
 
-
-// let beachVar = document.querySelector("#filterBeach");
-// let outputVar = document.querySelector("#output");
-
-// console.log('beachVar', beachVar)
-// beachVar.addEventListener("change", function () {
-//   console.log(beachVar.options[beachVar.selectedIndex].value);
-//   // outputVar.innerHTML = beachVar.options[beachVar.selectedIndex].value
-//   const selected = beachVar.options[beachVar.selectedIndex].value;
-//   console.log("selected", selected);
-
-//   const tester = testArr.filter((el) => el.beach === selected);
-//   console.log("tester", tester);
-
-//   if (tester.length > 0) {
-//     outputVar.innerHTML = tester
-//       .map((el) => `<div> ${el.message} </div>`)
-//       .join("");
-//   } else {
-//     outputVar.innerHTML = `  <div> No messages <div>
-// `;
-//   }
-// });

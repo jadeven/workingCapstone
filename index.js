@@ -6,6 +6,12 @@ import { capitalize } from "lodash";
 // console.log(store);
 import axios from "axios";
 import dotenv from "dotenv";
+import moment from 'moment';
+moment().format();
+
+
+const startDate = moment.utc('2022-12-08T12:23:34Z');
+console.log('startdate', startDate.format())
 
 dotenv.config();
 
@@ -30,27 +36,27 @@ function afterRender(state) {
   });
 
   //filter beach messages
-  let beachVar = document.querySelector("#filterBeach");
-  let outputVar = document.querySelector("#output");
+//   let beachVar = document.querySelector("#filterBeach");
+//   let outputVar = document.querySelector("#output");
 
-  console.log("beachVar", beachVar);
-  beachVar.addEventListener("change", function() {
-    console.log(beachVar.options[beachVar.selectedIndex].value);
-    const selected = beachVar.options[beachVar.selectedIndex].value;
-    console.log("selected", selected);
+//   console.log("beachVar", beachVar);
+//   beachVar.addEventListener("change", function() {
+//     console.log(beachVar.options[beachVar.selectedIndex].value);
+//     const selected = beachVar.options[beachVar.selectedIndex].value;
+//     console.log("selected", selected);
 
-    const tester = state.messages.filter((el) => el.beach === selected);
-    console.log("tester", tester);
+//     const tester = state.messages.filter((el) => el.beach === selected);
+//     console.log("tester", tester);
 
-    if (tester.length > 0) {
-      outputVar.innerHTML = tester
-        .map((el) => `<div> ${el.message} </div>`)
-        .join("");
-    } else {
-      outputVar.innerHTML = `  <div> No messages <div>
-`;
-    }
-  });
+//     if (tester.length > 0) {
+//       outputVar.innerHTML = tester
+//         .map((el) => `<div> ${el.message} </div>`)
+//         .join("");
+//     } else {
+//       outputVar.innerHTML = `  <div> No messages <div>
+// `;
+//     }
+//   });
   if (state.view === "Message") {
     document.querySelector("form").addEventListener("submit", (event) => {
       event.preventDefault();
@@ -68,8 +74,8 @@ function afterRender(state) {
       const messages = [];
 
       const requestData = {
-        beach: beachChoice,
-        message: message,
+        beachChoice: beachChoice.value,
+        message: message.value,
       };
       console.log("request Body", requestData);
 
@@ -77,7 +83,7 @@ function afterRender(state) {
         .post(`${process.env.MESSAGE_API_URL}/message`, requestData)
         .then((response) => {
           // Push the new pizza onto the Pizza state pizzas attribute, so it can be displayed in the pizza list
-          store.Seemessages.message.push(response.data);
+          // store.Seemessages.message.push(response.data);
           console.log("res from axios", response);
           router.navigate("/");
         })
