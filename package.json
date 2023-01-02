@@ -6,7 +6,7 @@
     "parcel-build": "parcel build index.html && cp _redirects ./dist/",
     "serve": "parcel index.html",
     "app:watch": "nodemon --watch ./server -e js ./server/app.js",
-    "test": "jasmine --color"    
+    "test": "jasmine --color"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +28,7 @@
     "html-literal": "^1.1.0",
     "leaflet": "^1.9.3",
     "lodash": "^4.17.21",
+    "moment": "^2.29.4",
     "mongoose": "^6.8.0",
     "navigo": "^8.11.1"
   }

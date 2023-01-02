@@ -29,6 +29,12 @@ const cors = (req, res, next) => {
   next();
 };
 
+db.on("error", console.error.bind(console, "Connection Error:"));
+db.once(
+  "open",
+  console.log.bind(console, "Successfully opened connection to Mongo!")
+);
+
 const logging = (request, response, next) => {
   console.log(`${request.method} ${request.url} ${Date.now()}`);
   next();
@@ -38,11 +44,7 @@ app.use(cors);
 app.use(express.json());
 app.use(logging);
 
-db.on("error", console.error.bind(console, "Connection Error:"));
-db.once(
-  "open",
-  console.log.bind(console, "Successfully opened connection to Mongo!")
-);
+
 
 app.get("/status", (request, response) => {
   response.status(200).json({ message: "Service healthy" });

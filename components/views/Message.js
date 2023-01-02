@@ -7,11 +7,11 @@ export default () => html`
         <label for="beachChoice">Beach</label>
         <select id="beachChoice" name="beachChoice">
           <option value="">Select a beach</option>
-          <option value="MCBH">Kaneohe Marine Corps Base</option>
-          <option value="Bellows">Bellows</option>
-          <option value="Hickam"> Hickam</option>
-          <option value="Barbers">Barbers</option>
-          <option value="Pokai">Pokai</option>
+          <option value="pyramid">Kaneohe Marine Corps Base</option>
+          <option value="bellows">Bellows</option>
+          <option value="hickam"> Hickam</option>
+          <option value="barbers">Barbers</option>
+          <option value="pokai">Pokai</option>
         </select>
       </div>
       <div>
