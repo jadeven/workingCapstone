@@ -12,8 +12,7 @@ export default state => html`
           Please use links below to find real time conditions of beaches located
           on military bases in Hawaii or please leave a message about the beach. 
         </h3>
-        <div><a href="/message" title="message"
-       data-navigo>Leave a message</a></div>
+   
 
       </div>
     </header>

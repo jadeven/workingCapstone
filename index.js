@@ -35,7 +35,7 @@ function afterRender(state) {
     document.querySelector("messageButton").classList.toggle("hidden--mobile");
   });
 
-  //filter beach messages
+  //filter beach messages- this breaks the leave message portion of app
 //   let beachVar = document.querySelector("#filterBeach");
 //   let outputVar = document.querySelector("#output");
 
@@ -45,11 +45,11 @@ function afterRender(state) {
 //     const selected = beachVar.options[beachVar.selectedIndex].value;
 //     console.log("selected", selected);
 
-//     const tester = state.messages.filter((el) => el.beach === selected);
-//     console.log("tester", tester);
+//     const filteredBeachArr = state.messages.filter((el) => el.beach === selected);
+//     console.log("filteredBeachArr", filteredBeachArr);
 
-//     if (tester.length > 0) {
-//       outputVar.innerHTML = tester
+//     if (filteredBeachArr.length > 0) {
+//       outputVar.innerHTML = filteredBeachArr
 //         .map((el) => `<div> ${el.message} </div>`)
 //         .join("");
 //     } else {
@@ -61,15 +61,9 @@ function afterRender(state) {
     document.querySelector("form").addEventListener("submit", (event) => {
       event.preventDefault();
 
-      // const inputList = event.target.value
 
       const message = document.getElementById("beachMessage");
       const beachChoice = document.getElementById("beachChoice");
-
-      console.log("mesage", message.value);
-      console.log("beachChoice", beachChoice.value);
-
-      // console.log("Input Element List", inputList);
 
       const messages = [];
 
@@ -80,10 +74,10 @@ function afterRender(state) {
       console.log("request Body", requestData);
 
       axios
-        .post(`${process.env.MESSAGE_API_URL}/message`, requestData)
+        .post(`${process.env.MESSAGE_API_URL}/messages`, requestData)
         .then((response) => {
-          // Push the new pizza onto the Pizza state pizzas attribute, so it can be displayed in the pizza list
-          // store.Seemessages.message.push(response.data);
+          // Push the new msg onto the msg state msgs attribute, so it can be displayed in the msg list
+          store.Seemessages.messages.push(response.data);
           console.log("res from axios", response);
           router.navigate("/");
         })
@@ -154,6 +148,7 @@ router.hooks({
           .get(`${process.env.MESSAGE_API_URL}/messages`)
           .then((response) => {
             // Storing retrieved data in state
+            console.log('response from get req', response)
             store.Seemessages.messages = response.data;
             done();
           })
