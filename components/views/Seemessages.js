@@ -30,7 +30,7 @@ export default state => html`
    .map( el => {
       return `<div>
       <div>
-      ${el.time}
+   ${el.time}
       </div>
       ${el.beachChoice}
 
