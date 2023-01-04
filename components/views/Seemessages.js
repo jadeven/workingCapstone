@@ -1,15 +1,6 @@
 import html from "html-literal";
 
-// const testArr = [
-//    { beach: "pokai", message: "fsf sd fdsjl dfs fsa", date: "Dec" },
-//    { beach: "pokai", message: "tester 2", date: "Oct" },
-//    { beach: "MCBH", message: "tester 23", date: "Dec" },
-//    { beach: "barbers", message: "tester 232", date: "Nov" },
-//    { beach: "pokai", message: "tester 2", date: "Oct" },
-//    { beach: "pokai", message: "tester 2", date: "Oct" },
- 
-//    { beach: "MCBH", message: "tester 342", date: "Dec" }
-//  ];
+
 
 export default state => html`
   </div id='allMessages'>
@@ -18,7 +9,7 @@ export default state => html`
       <label for="filterBeach"> View message by beach:</label> 
       <select id="filterBeach" name="filterBeach">
       <option value="">Select a Beach</option>
-      <option value="MCBH">MCBH</option>
+      <option value="kaneohe">Kaneohe Marine Corps Base</option>
       <option value="bellows">Bellows</option>
       <option value="hickam">hickam</option>
       <option value="barbers">Barbers Point</option>
@@ -35,6 +26,23 @@ export default state => html`
       </select>
 </span>
 <div id='output'>
+   ${state.messages 
+   .map( el => {
+      return `<div>
+      <div>
+      ${el.time}
+      </div>
+      ${el.beachChoice}
+
+      <div>
+      ${el.message}
+      <hr></hr>
+
+      </div>
+      </div>`
+   }
+   )
+   }
 </div>
    </div>
 `;
