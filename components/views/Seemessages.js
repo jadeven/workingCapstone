@@ -28,7 +28,7 @@ export default state => html`
 <div id='output'>
    ${state.messages 
    .map( el => {
-      return `<div>
+      return `<div id='message'>
       <div>
    ${el.time}
       </div>
