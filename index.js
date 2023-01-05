@@ -36,32 +36,30 @@ function afterRender(state) {
   });
 
   //filter beach messages- this breaks the leave message portion of app
-//   let beachVar = document.querySelector("#filterBeach");
-//   let outputVar = document.querySelector("#output");
+  let beachVar = document.querySelector("#filterBeach");
+  let outputVar = document.querySelector("#output");
 
-//   console.log("beachVar", beachVar);
-//   beachVar.addEventListener("change", function() {
-//     console.log(beachVar.options[beachVar.selectedIndex].value);
-//     const selected = beachVar.options[beachVar.selectedIndex].value;
-//     console.log("selected", selected);
+  console.log("beachVar", beachVar);
+  beachVar.addEventListener("change", function() {
+    console.log(beachVar.options[beachVar.selectedIndex].value);
+    const selected = beachVar.options[beachVar.selectedIndex].value;
+    console.log("selected", selected);
 
-//     const filteredBeachArr = state.messages.filter((el) => el.beach === selected);
-//     console.log("filteredBeachArr", filteredBeachArr);
+    const filteredBeachArr = state.messages.filter((el) => el.beachChoice === selected);
+    console.log("filteredBeachArr", filteredBeachArr);
 
-//     if (filteredBeachArr.length > 0) {
-//       outputVar.innerHTML = filteredBeachArr
-//         .map((el) => `<div> ${el.message} </div>`)
-//         .join("");
-//     } else {
-//       outputVar.innerHTML = `  <div> No messages <div>
-// `;
-//     }
-//   });
+    if (filteredBeachArr.length > 0) {
+      outputVar.innerHTML = filteredBeachArr
+        .map((el) => `<div> ${el.message} </div>`)
+        .join("");
+    } else {
+      outputVar.innerHTML = `  <div> No messages <div>
+`;
+    }
+  });
   if (state.view === "Message") {
     document.querySelector("form").addEventListener("submit", (event) => {
       event.preventDefault();
-
-
       const message = document.getElementById("beachMessage");
       const beachChoice = document.getElementById("beachChoice");
 
@@ -78,7 +76,7 @@ function afterRender(state) {
         .then((response) => {
           // Push the new msg onto the msg state msgs attribute, so it can be displayed in the msg list
           store.Seemessages.messages.push(response.data);
-          console.log("res from axios", response);
+          console.log("res from axios post", response);
           router.navigate("/");
         })
         .catch((error) => {
@@ -141,8 +139,10 @@ router.hooks({
           })
           .catch((err) => console.log(err));
         break;
-      // New Case for Pizza View
+      // New Case for Message View
       case "Seemessages":
+
+      
         // New Axios get request utilizing already made environment variable
         axios
           .get(`${process.env.MESSAGE_API_URL}/messages`)
