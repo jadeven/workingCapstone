@@ -195,7 +195,42 @@ footer {
 
 }
 
+textarea {
+  width: 350px;
+height: 200px;}
 
 #output{
   margin-top: 40px;
+}
+
+.messages {
+  width: 80%;
+  margin: auto;
+  padding: 10px;
+  /* width: fit-content; */
+}
+
+.message {
+  font-size: 30px;
+  margin-left: 10px;
+}
+
+.left {
+  /* background-color: pink; */
+  /* width: 400px; */
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+  font-size: 20px;
+
+  /* width: -moz-fit-content; */
+  /* width: fit-content; */
+}
+
+.right {
+  /* background-color: orange; */
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  font-size: 20px;
 }

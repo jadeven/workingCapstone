@@ -6,12 +6,11 @@ import { capitalize } from "lodash";
 // console.log(store);
 import axios from "axios";
 import dotenv from "dotenv";
-import moment from 'moment';
+import moment from "moment";
 moment().format();
 
-
-const startDate = moment.utc('2022-12-08T12:23:34Z');
-console.log('startdate', startDate.format())
+const startDate = moment.utc("2022-12-08T12:23:34Z");
+console.log("startdate", startDate.format());
 
 dotenv.config();
 
@@ -29,34 +28,13 @@ function render(state = store.Home) {
 }
 
 function afterRender(state) {
-  console.log('state', state)
+  console.log("state", state);
   // add menu toggle to bars icon in nav bar
   document.querySelector(".fa-bars").addEventListener("click", () => {
     document.querySelector("messageButton").classList.toggle("hidden--mobile");
   });
 
-  //filter beach messages- this breaks the leave message portion of app
-  let beachVar = document.querySelector("#filterBeach");
-  let outputVar = document.querySelector("#output");
 
-  console.log("beachVar", beachVar);
-  beachVar.addEventListener("change", function() {
-    console.log(beachVar.options[beachVar.selectedIndex].value);
-    const selected = beachVar.options[beachVar.selectedIndex].value;
-    console.log("selected", selected);
-
-    const filteredBeachArr = state.messages.filter((el) => el.beachChoice === selected);
-    console.log("filteredBeachArr", filteredBeachArr);
-
-    if (filteredBeachArr.length > 0) {
-      outputVar.innerHTML = filteredBeachArr
-        .map((el) => `<div> ${el.message} </div>`)
-        .join("");
-    } else {
-      outputVar.innerHTML = `  <div> No messages <div>
-`;
-    }
-  });
   if (state.view === "Message") {
     document.querySelector("form").addEventListener("submit", (event) => {
       event.preventDefault();
@@ -75,6 +53,7 @@ function afterRender(state) {
         .post(`${process.env.MESSAGE_API_URL}/messages`, requestData)
         .then((response) => {
           // Push the new msg onto the msg state msgs attribute, so it can be displayed in the msg list
+          
           store.Seemessages.messages.push(response.data);
           console.log("res from axios post", response);
           router.navigate("/");
@@ -82,6 +61,44 @@ function afterRender(state) {
         .catch((error) => {
           console.log("It puked", error);
         });
+    });
+  }
+  if (state.view === "Seemessages") {
+    let beachVar = document.querySelector("#filterBeach");
+    let outputVar = document.querySelector("#output");
+
+    console.log("beachVar", beachVar);
+    beachVar.addEventListener("change", function() {
+      console.log(beachVar.options[beachVar.selectedIndex].value);
+      const selected = beachVar.options[beachVar.selectedIndex].value;
+      console.log("selected", selected);
+
+      const filteredBeachArr = state.messages.filter(
+        (el) => el.beachChoice === selected
+      );
+      console.log("filteredBeachArr", filteredBeachArr);
+
+      if (filteredBeachArr.length > 0) {
+        outputVar.innerHTML = filteredBeachArr
+          .map(
+            (el) => `<div id='message'>
+        <div>
+     ${el.time}
+        </div>
+        ${el.beachChoice}
+  
+        <div>
+        ${el.message}
+        <hr></hr>
+  
+        </div>
+        </div>`
+          )
+          .join("");
+      } else {
+        outputVar.innerHTML = `  <div> No messages <div>
+`;
+      }
     });
   }
 }
@@ -141,15 +158,26 @@ router.hooks({
         break;
       // New Case for Message View
       case "Seemessages":
-
-      
         // New Axios get request utilizing already made environment variable
         axios
           .get(`${process.env.MESSAGE_API_URL}/messages`)
           .then((response) => {
+            console.log("response from get req", response);
+
+            //function to remove extraneous timestamp data 
+            function changerFunc(obj) {
+              return { ...obj, time: obj.time.split("").splice(0, 10).join("") };
+            }
+          
+            const conditionalR = response.data.map((obj) =>
+              obj.time ? changerFunc(obj) : obj
+            );
+
+            console.log('conditionalR', conditionalR)
+
             // Storing retrieved data in state
-            console.log('response from get req', response)
-            store.Seemessages.messages = response.data;
+
+            store.Seemessages.messages = conditionalR;
             done();
           })
           .catch((error) => {
